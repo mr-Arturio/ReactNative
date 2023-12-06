@@ -1,5 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, SafeAreaView, Image } from "react-native";
+import { Alert, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  TouchableHighlight,
+  SafeAreaView,
+  Image,
+} from "react-native";
 
 export default function App() {
   return (
@@ -12,14 +21,29 @@ export default function App() {
         deserunt duis deserunt sint fugiat cillum qui. Sunt ea amet occaecat
         aute elit.{" "}
       </Text>
-      <Image
-        source={{
-          width: 200,
-          height: 300,
-          uri: "https://picsum.photos/200/300",
-        }}
-      />
+
+      <TouchableOpacity onPress={() => console.log("Image tapped")}>
+        <Image
+          blurRadius={2}
+          fadeDuration={2000}
+          source={{
+            width: 200,
+            height: 300,
+            uri: "https://picsum.photos/200/300",
+          }}
+        />
+      </TouchableOpacity>
       <StatusBar style="auto" />
+      <Button
+        color="orange"
+        title="Click Me"
+        onPress={() =>
+          Alert.alert("My title", "My message", [
+            { text: "Yes", onPress: () => console.log("Yes") },
+            { text: "No", onPress: () => console.log("No") },
+          ])
+        }
+      />
     </SafeAreaView>
   );
 }
