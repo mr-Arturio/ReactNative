@@ -1,5 +1,7 @@
-import { StatusBar } from "expo-status-bar";
 import { Alert, Button } from "react-native";
+
+import {useWindowDimensions} from 'react-native';
+
 import {
   StyleSheet,
   Text,
@@ -8,11 +10,19 @@ import {
   TouchableHighlight,
   SafeAreaView,
   Image,
+  Platform,
+  StatusBar,
+  View,
 } from "react-native";
 
 export default function App() {
+  console.log(useWindowDimensions());
   return (
     <SafeAreaView style={styles.container}>
+      <View style={{ backgroundColor: "pink", width: "50%", height: 70 }}>
+        <Text>Hello World</Text>
+      </View>
+
       <Text numberOfLines={1}>
         {" "}
         Laboris proident id id aute qui nulla culpa esse reprehenderit commodo
@@ -24,7 +34,7 @@ export default function App() {
 
       <TouchableOpacity onPress={() => console.log("Image tapped")}>
         <Image
-          blurRadius={2}
+          blurRadius={0}
           fadeDuration={2000}
           source={{
             width: 200,
@@ -54,5 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: "dodgerblue",
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0, // for android
   },
 });
