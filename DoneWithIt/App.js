@@ -1,7 +1,7 @@
 import { Alert, Button } from "react-native";
 
-import {useWindowDimensions} from 'react-native';
-
+import { useWindowDimensions } from "react-native";
+import { useDeviceOrientation } from "@react-native-community/hooks";
 import {
   StyleSheet,
   Text,
@@ -17,13 +17,32 @@ import {
 
 export default function App() {
   console.log(useWindowDimensions());
+  console.log(useDeviceOrientation());
+
+  const { landscape } = useDeviceOrientation();
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ backgroundColor: "pink", width: "50%", height: 70 }}>
-        <Text>Hello World</Text>
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "pink",
+          width: "30%",
+          height: landscape ? "100%" : "20%",
+        }}
+      >
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 50,
+          }}
+        >
+          Hello World
+        </Text>
       </View>
 
-      <Text numberOfLines={1}>
+      <Text numberOfLines={5}>
         {" "}
         Laboris proident id id aute qui nulla culpa esse reprehenderit commodo
         veniam do est ea. Nisi aliquip eu labore eu magna nostrud velit duis ex
@@ -60,10 +79,11 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: "100%",
     backgroundColor: "dodgerblue",
+    flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0, // for android
   },
 });
