@@ -7,7 +7,7 @@ import yourImage from "../assets/background.jpg";
 export default function WelcomeScreen() {
   return (
     <View style={styles.container}>
-      {/* Use the imported image */}
+    
       <ImageBackground
         source={yourImage}
         resizeMode="cover"
